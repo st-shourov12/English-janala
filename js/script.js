@@ -18,6 +18,22 @@ const displayLevelWord = (words) =>{
     const wordContainer = document.getElementById("word-container");
     wordContainer.innerHTML= "";
 
+    if (words.length == 0) {
+         wordContainer.innerHTML= `
+            <div class="text-center col-span-full rounded-xl py-10 space-y-4">
+                <img class="mx-auto" src="./english-janala-resources/assets/alert-error.png" alt="">
+
+                <h4 class="fb text-gray-500">
+                    এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+                </h4>
+                <h2 class="fb text-4xl font-medium">
+                    নেক্সট Lesson এ যান
+                </h2>
+            </div>
+         `;
+        return ;    
+    }
+
     words.forEach(word => {
         const card = document.createElement("div");
 
@@ -30,7 +46,7 @@ const displayLevelWord = (words) =>{
                     Meaning / Pronounciation
                 </p>
                 <h3 class="text-2xl font-medium fb">
-                    ${word.meaning} / ${word.pronounciation}
+                    ${word.meaning ? word.meaning :"Didn't get meaning"} / ${word.pronounciation ? word.pronounciation : "Didn't get pronounciation"}
                 </h3>
                 <div class="flex justify-between items-center">
                     <button class="btn bg-[#1a91ff10] hover:bg-[#1a91ff80]"><i class="fa-solid fa-circle-info"></i></button>
